@@ -67,4 +67,22 @@ class ProductTest < ActiveSupport::TestCase
     #assert_equal [I18n.translate('errors.message.taken')], product.errors[:title]
     assert_equal ['has already been taken'], product.errors[:title]
   end
+
+  test "Tamanho minino Title 10 caracteres <10" do
+    product=Product.new(title:      "Bleb",
+                        description:"yyyy",
+                        price:      1,
+                        image_url:  "fred.gif")
+    assert product.invalid?
+    assert_equal ['is too short (minimum is 10 characters)'], product.errors[:title]
+  end
+
+  test "Tamanho minino Title 10 caracteres >10" do
+    product=Product.new(title:      "Blebcheckneber preto",
+                        description:"yyyy",
+                        price:      1,
+                        image_url:  "fred.gif")
+    assert product.valid?
+  end
+
 end
