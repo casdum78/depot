@@ -22,6 +22,9 @@
           <li><a href="/questions">Questions</a></li>
           <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
+          <% time = Time.now %>
+          <font color="green">
+          <li><%= time.strftime("%d/%m/%Y %k:%M") %></li>
         </ul>
       </nav>
 			<main class='<%= controller.controller_name %>'>
