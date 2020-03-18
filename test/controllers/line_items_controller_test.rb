@@ -45,7 +45,8 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('LineItem.count', -1) do
       delete line_item_url(@line_item)
     end
-
-    assert_redirected_to line_items_url
+    
+    #assert_redirected_to line_items_url
+    assert_redirected_to cart_path(@line_item.cart)
   end
 end

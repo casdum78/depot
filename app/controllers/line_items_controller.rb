@@ -38,7 +38,8 @@ class LineItemsController < ApplicationController
       #cada vez que acrescentamos um item a lista, zeramos o contador de passagem pelo store controller
       session[:counter]=0;
       if @line_item.save
-        format.html { redirect_to @line_item.cart}
+        #format.html { redirect_to @line_item.cart}
+        format.html { redirect_to store_index_url}
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
