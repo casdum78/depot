@@ -3,6 +3,10 @@ class LineItemsController < ApplicationController
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
+  #never trust parameters from the scary internet
+  def line_items_params
+    params.require(:line_item).permit(:product_id)
+  end
   # GET /line_items
   # GET /line_items.json
   def index
@@ -27,13 +31,14 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(product: product)
+    #@line_item = @cart.line_items.build(product: product)
+    @line_item = @cart.add_product(product)
     
     respond_to do |format|
       #cada vez que acrescentamos um item a lista, zeramos o contador de passagem pelo store controller
       session[:counter]=0;
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.'}
+        format.html { redirect_to @line_item.cart}
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -61,7 +66,8 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      #ao apagar uma linha, retorna para a tela de cart, mostrando os itens remanescentes
+      format.html { redirect_to cart_path(@line_item.cart), notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

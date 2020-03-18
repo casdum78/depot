@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 
-  has_many :line_itens
+  has_many :line_items
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
@@ -17,7 +17,7 @@ class Product < ApplicationRecord
 
   #ensure that there are no line itens referencing this product
   def ensure_not_referenced_by_any_line_item
-    unless lines_items.empty?
+    unless line_items.empty?
       errors.add(:base, 'Lines Items present')
       throw :abort
     end

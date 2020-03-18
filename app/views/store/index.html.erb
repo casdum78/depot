@@ -4,6 +4,7 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
+<!-- ver pag 132 livro ruby para entender esse if-->
 <% if session[:counter] >5 %> 
 <font color="green">
 <h1> <%= "You passed throught store controller: " +  pluralize(session[:counter], 'time') %> </h1>
