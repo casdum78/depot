@@ -40,7 +40,8 @@ class LineItemsController < ApplicationController
       if @line_item.save
         #format.html { redirect_to @line_item.cart}
         format.html { redirect_to store_index_url}
-        format.js {@current_item = @line_item}
+        #format.js {@current_item = @line_item}
+        #format.js 
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -66,11 +67,26 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item.destroy
-    respond_to do |format|
-      #ao apagar uma linha, retorna para a tela de cart, mostrando os itens remanescentes
-      format.html { redirect_to cart_path(@line_item.cart), notice: 'Line item was successfully destroyed.' }
-      format.json { head :no_content }
+    #debugger
+    if @line_item.quantity>1
+      @line_item.quantity -=1
+      @line_item.save!
+      #new_line_item_quantity = @line_item.quantity-1
+      #@line_item.update(quantity: new_line_item_quantity)
+      respond_to do |format|
+        format.html { redirect_to store_index_url, notice: 'Line item was successfully updated.' }
+        format.js
+        format.json { render :show, status: :ok, location: @line_item }
+      end
+    else
+      @line_item.destroy
+      respond_to do |format|
+        #ao apagar uma linha, retorna para a tela de cart, mostrando os itens remanescentes
+        format.html { redirect_to store_index_url, notice: 'Line item was successfully updated.' }
+        format.js
+        #format.html { redirect_to cart_path(@line_item.cart), notice: 'Line item was successfully destroyed or subtracted.' }
+        format.json { head :no_content }
+      end
     end
   end
 
