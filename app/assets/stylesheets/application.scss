@@ -146,6 +146,9 @@ header.main {
   input[type="submit"]:hover {
     background-color: #9d9;
   }
+  input[type="submit"]:disabled {
+    background: #ccc;
+  }
   //also, clean up the error styling
   #error_explanation {
     background-color: white;
