@@ -75,7 +75,7 @@ class LineItemsController < ApplicationController
       #@line_item.update(quantity: new_line_item_quantity)
       respond_to do |format|
         format.html { redirect_to store_index_url, notice: 'Line item was successfully updated.' }
-        format.js
+        #format.js
         format.json { render :show, status: :ok, location: @line_item }
       end
     else
@@ -93,6 +93,7 @@ class LineItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
+      #debugger
       @line_item = LineItem.find(params[:id])
     end
 

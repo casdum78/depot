@@ -32,7 +32,8 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :success
-    assert_match /<tr class=\\ "line-item-highlight/, @response.body
+    #assert_match /<tr class=\\ "line-item-highlight/, @response.body
+    assert_match "Turbolinks.clearCache()\nTurbolinks.visit(\"http://www.example.com/\", {\"action\":\"replace\"})", @response.body
   end
 
   test "should show line_item" do
@@ -55,7 +56,8 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
     
-    #assert_redirected_to line_items_url
-    assert_redirected_to cart_path(@line_item.cart)
+    #assert_redirected_to line_items_url store_index_url
+    assert_redirected_to store_index_url
+    #assert_redirected_to cart_path(@line_item.cart)
   end
 end
