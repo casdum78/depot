@@ -42,7 +42,6 @@ header.main {
   padding: 1em 1.414em;
   text-align: center;
 }
-
 .content {
   margin: 0;
   padding: 0;
@@ -66,6 +65,43 @@ header.main {
       text-align: left; // desktop nav is left-aligned
       padding: 1em;     // and needs more padding
     }
+
+    #cart {
+      article {
+        h2 {
+          margin-top: 0;
+        }
+        background: white;
+        border-radius: 0.5em;
+        margin: 1em;
+        padding: 1.414em;
+        @media (min-width: 30em) {
+          margin: 0; // desktop doesn't need this margin
+        }
+      }
+    }
+
+nav.logged_in_nav {
+  border-top: solid thin #bfb;
+  padding: 0.354em 0;
+  margin-top: 0.354em;
+  input[type="submit"] {
+    // Make the logout button look like a
+    // link, so it matches the nav style
+    background: none;
+    border: none;
+    color: #bfb;
+    font-size: 1em;
+    letter-spacing: 0.354em;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  input[type="submit"]:hover {
+    color: white;
+  }
+}
+
     ul {
       list-style: none;
       margin: 0;
@@ -93,21 +129,8 @@ header.main {
     padding: 0.5em;
   }
 }
-#cart {
-  article {
-    h2 {
-      margin-top: 0;
-    }
-    background: white;
-    border-radius: 0.5em;
-    margin: 1em;
-    padding: 1.414em;
-    @media (min-width:30em) {
-      margin: 0; //desktop doesn t need this margin
-    }
-  }
-}
 
+//
 .depot_form {
   padding: 0 1em;
   h1 {
@@ -134,7 +157,7 @@ header.main {
   label {
     padding: 0.5em 0;
   }
-  input[type="submit"]{
+  input[type="submit"] {
     background-color: #bfb;
     border-radius: 0.354em;
     border: solid thin #888;
@@ -146,27 +169,24 @@ header.main {
   input[type="submit"]:hover {
     background-color: #9d9;
   }
-  input[type="submit"]:disabled {
-    background: #ccc;
-  }
-  //also, clean up the error styling
+  // Also, clean up the error styling
   #error_explanation {
     background-color: white;
     border-radius: 1em;
     border: solid thin red;
     margin-bottom: 0.5em;
     padding: 0.5em;
-    width: 100%
+    width: 100%;
     h2 {
       background: none;
       color: red;
-      font-size:1.41em;
+      font-size: 1.41em;
       line-height: 1.41em;
       padding: 1em;
     }
     ul {
       margin-top: 0;
-      li{
+      li {
         color: red;
         font-size: 1em;
       }
@@ -182,8 +202,9 @@ header.main {
     label::before {
       content: "! ";
     }
-    input, textarea {
+    input,textarea {
       background: pink;
     }
   }
 }
+//
