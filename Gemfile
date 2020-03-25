@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 #use activemodel serializers xml
 gem 'activemodel-serializers-xml', '~> 1.0', '>= 1.0.2'
-
+gem 'i18n-js'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
